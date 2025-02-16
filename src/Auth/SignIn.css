@@ -1,0 +1,94 @@
+
+.video-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* .form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 500px; 
+    background: rgba(255, 255, 255, 0.2);
+    padding: 3rem; 
+    border-radius: 15px;
+    backdrop-filter: blur(12rem); 
+    text-align: center;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
+} */
+
+
+
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 4rem;
+    border-radius: 0.5rem;
+   border: 1px solid gray;
+    backdrop-filter: blur(0.1rem);
+}
+
+/* Labels */
+.login-form-container label {
+    color: #333;
+    font-size: 14px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.login-form-container header p{
+    color: #ffffff;
+}
+/* Input Fields */
+.login-form-container input {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background: rgba(247, 247, 247, 0.3); 
+    color: #ffffff;
+    outline: none;
+}
+
+.login-form-container input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* Sign In Button */
+.login-form-container button {
+    padding: 12px;
+    background-color: #344354;
+    color: white;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.login-form-container button:hover {
+    background-color: #0056b3;
+}
