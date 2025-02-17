@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Box, Typography } from "@mui/material";
 import "./SignIn.css";
-import videoBg from "../assets/background-video.mp4";
+import backgroundImage from "../assets/19187761.jpg";
 
 const SignIn = () => {
   const [userName, setUserName] = useState("");
@@ -9,22 +10,39 @@ const SignIn = () => {
     // e.preventDefault();
   };
   return (
-    <div className="video-container">
-      <video autoPlay loop muted playsInline className="background-video">
-        <source src={videoBg} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    <Box
+      sx={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "white",
+        textAlign: "center",
+        px: 3,
+        backgroundColor: "rgba(0, 0, 0, 0.5)", // Dark overlay for better readability
+        backdropFilter: "blur(3px)",
+      }}
+    >
       <form className="login-form-container" action={submitForm}>
         <header>
-          <h1>Login</h1>
+          <Typography variant="h4" fontWeight={700} gutterBottom>
+            Sign In
+          </Typography>
         </header>
-        <p>Welcome please login to continue</p>
+        <Typography variant="p" fontWeight={700} gutterBottom>
+          Welcome please Signin to continue
+        </Typography>
         <input
           name="username"
           placeholder="Enter UserName"
           value={userName}
           required
-          onChange={(e) => setUserName(e.target.value)}  
+          onChange={(e) => setUserName(e.target.value)}
         ></input>
         <input
           type="password"
@@ -36,7 +54,7 @@ const SignIn = () => {
         ></input>
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </Box>
   );
 };
 

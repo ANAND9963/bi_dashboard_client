@@ -9,6 +9,7 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Signup/>} />
+      <Route path="/Signup" element={<Signup/>} />
       <Route path="/Hero" element={<Hero/>} />
       <Route path="/Home" element={<Home />} />
       <Route path="/SignIn" element={<SignIn />} />

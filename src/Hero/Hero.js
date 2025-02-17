@@ -36,7 +36,7 @@ const Hero = () => {
       >
         <StyledButton variant="outlined" onClick={()=>navigate("/SignIn")}>Login</StyledButton>
 
-        <StyledButton variant="outlined">Sign Up</StyledButton>
+        <StyledButton variant="outlined" onClick={()=>navigate("/Signup")}>Sign Up</StyledButton>
       </Box>
 
       <Typography variant="h3" fontWeight={700} gutterBottom>

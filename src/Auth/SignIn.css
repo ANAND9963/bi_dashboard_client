@@ -20,21 +20,6 @@
     z-index: -1;
 }
 
-/* .form-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 500px; 
-    background: rgba(255, 255, 255, 0.2);
-    padding: 3rem; 
-    border-radius: 15px;
-    backdrop-filter: blur(12rem); 
-    text-align: center;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
-} */
 
 
 
@@ -44,7 +29,7 @@
     align-items: center;
     gap: 1rem;
     padding: 4rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
    border: 1px solid gray;
     backdrop-filter: blur(0.1rem);
 }
@@ -69,6 +54,7 @@
     background: rgba(247, 247, 247, 0.3); 
     color: #ffffff;
     outline: none;
+    
 }
 
 .login-form-container input::placeholder {
@@ -78,10 +64,10 @@
 /* Sign In Button */
 .login-form-container button {
     padding: 12px;
-    background-color: #344354;
+    background-color: #080f17;
     color: white;
     border: none;
-    width: 100%;
+    width: 50%;
     border-radius: 5px;
     font-size: 15px;
     cursor: pointer;
@@ -91,4 +77,11 @@
 
 .login-form-container button:hover {
     background-color: #0056b3;
+}
+
+.custom-toast-sucess{
+    background-color: #d4edda !important;
+    font-weight: bold;
+    border-radius: 15px;
+    padding: 10px;
 }
