@@ -11,10 +11,13 @@
     "@mui/icons-material": "^6.4.4",
     "@mui/material": "^6.4.4",
     "@mui/styled-engine-sc": "^6.4.3",
+    "framer-motion": "^12.4.4",
+    "microsoft-cognitiveservices-speech-sdk": "^1.42.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",
     "react-scripts": "5.0.1",
+    "react-speech-recognition": "^3.10.0",
     "react-toastify": "^11.0.3",
     "styled-components": "^6.1.15"
   },
