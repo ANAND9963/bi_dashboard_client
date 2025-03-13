@@ -2,13 +2,40 @@ import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import "./SignIn.css";
 import backgroundImage from "../assets/19187761.jpg";
+import { Link, useNavigate  } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignIn = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const notify = () => 
+    toast.success("you are Signedup successfully!",{
+      position:"top-center",
+      autoClose:3000,
+      theme:"light",
+      className:"custom-toast-sucess",
+      closeButton:false,
+      hideProgressBar:true
+    });
+  const navigate = useNavigate(); 
   const submitForm = (e) => {
-    // e.preventDefault();
-  };
+    e.preventDefault();
+    if(userName === "" || password === ""){
+      setError("Please enter both username and password");
+      return;
+    }
+    if(userName === "admin" && password === "admin"){
+      notify();
+      setTimeout(() => {
+        navigate("/Home");
+      }, 2000);
+    }else{
+      setError("Invalid username or password");
+      notify();
+    }
+  };  
   return (
     <Box
       sx={{
@@ -24,18 +51,17 @@ const SignIn = () => {
         color: "white",
         textAlign: "center",
         px: 3,
-        backgroundColor: "rgba(0, 0, 0, 0.5)", // Dark overlay for better readability
         backdropFilter: "blur(3px)",
       }}
     >
-      <form className="login-form-container" action={submitForm}>
+      <form className="login-form-container" onSubmit={submitForm}>
         <header>
           <Typography variant="h4" fontWeight={700} gutterBottom>
             Sign In
           </Typography>
         </header>
         <Typography variant="p" fontWeight={700} gutterBottom>
-          Welcome please Signin to continue
+          Welcome please Sign in to continue
         </Typography>
         <input
           name="username"
@@ -53,7 +79,15 @@ const SignIn = () => {
           onChange={(e) => setPassword(e.target.value)}
         ></input>
         <button type="submit">Submit</button>
+        <Typography mt={2}>
+          Don't have an account?{" "}
+          <Link to="/signup" style={{ color: "#ffcc00", textDecoration: "none", fontWeight: "bold" }}>
+            Sign up
+          </Link>
+        </Typography>
+        {error && <Typography color="error">{error}</Typography>}
       </form>
+      <ToastContainer />
     </Box>
   );
 };

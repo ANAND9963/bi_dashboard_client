@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./SignIn.css";
 import { Box, Typography } from "@mui/material";
 import backgroundImage from "../assets/19187761.jpg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -18,16 +18,25 @@ const Signup = () => {
       hideProgressBar:true
     });
  
-  // const [userName, setUserName] = useState("");
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const submitForm = (e) => {
     e.preventDefault();
+    if(password !== confirmPassword){
+      toast.error("Password do not match",{
+        position:"top-center",
+        autoClose:3000,
+        theme:"light",
+        className:"custom-toast-error",
+      });
+      return;
+    }
     notify();
     setTimeout(() => {
-      navigate("/SignIn"); // Navigate to the SignIn page
+      navigate("/SignIn"); 
     }, 2000);
     
     
@@ -92,11 +101,18 @@ const Signup = () => {
           type="password"
           name="password"
           placeholder="Re Enter Password"
-          value={password}
+          value={confirmPassword}
           required
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         ></input>
         <button type="submit">Register</button>
+        <Typography mt={2}>
+          Already have an account?{" "}
+          <Link to="/SignIn" style={{ color: "#ffcc00", textDecoration: "none", fontWeight: "bold" }}>
+            Sign In
+          </Link>
+          
+        </Typography>
       </form>
       <ToastContainer />
     </Box>
