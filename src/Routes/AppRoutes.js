@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from '../Home/Home';
 import Hero from '../Hero/Hero';
 import Signup from '../Auth/Signup';
+import Profile from '../Home/Profile';
 
 const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const AppRoutes = () => {
       <Route path="/Hero" element={<Hero/>} />
       <Route path="/Home" element={<Home />} />
       <Route path="/SignIn" element={<SignIn />} />
+      <Route path="/Profile" element={<Profile />} />
     </Routes>
   );
 };
