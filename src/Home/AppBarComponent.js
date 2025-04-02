@@ -36,14 +36,20 @@ const AppBarComponent = ({ user }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const handleNavClick =(pages) =>{
+    setAnchorElNav(null);
+    if(pages === "Home"){
+        navigate("/Home");
+    }
+
+  }
   const handleMenuClick = (setting) => {
     setAnchorElUser(null);
     if (setting === "Profile") {
-      navigate("/profile"); // Redirect to Profile Page
+      navigate("/profile"); 
     } else if (setting === "Dashboard") {
       navigate("/Home");
     } else if (setting === "Logout") {
-
       navigate("/SignIn")
       console.log("Logging Out...");
     }
@@ -87,7 +93,7 @@ const AppBarComponent = ({ user }) => {
               onClose={handleCloseNavMenu}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={() => handleNavClick(page)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -97,7 +103,9 @@ const AppBarComponent = ({ user }) => {
           {/* Desktop Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button key={page} sx={{ my: 2, color: "white" }}>
+              <Button key={page} sx={{ my: 2, color: "white" }}
+              onClick={() => handleNavClick(page)}
+              >
                 {page}
               </Button>
             ))}
