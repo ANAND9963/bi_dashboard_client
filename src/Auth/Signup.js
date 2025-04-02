@@ -5,19 +5,19 @@ import backgroundImage from "../assets/19187761.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { SignUpApi } from "./AuthCalls";
 const Signup = () => {
   const navigate = useNavigate();
-  const notify = () => 
-    toast.success("you are Signedup successfully!",{
-      position:"top-center",
-      autoClose:3000,
-      theme:"light",
-      className:"custom-toast-sucess",
-      closeButton:false,
-      hideProgressBar:true
+  const notify = () =>
+    toast.success("you are Signedup successfully!", {
+      position: "top-center",
+      autoClose: 3000,
+      theme: "light",
+      className: "custom-toast-sucess",
+      closeButton: false,
+      hideProgressBar: true
     });
- 
+
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -25,21 +25,32 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const submitForm = (e) => {
     e.preventDefault();
-    if(password !== confirmPassword){
-      toast.error("Password do not match",{
-        position:"top-center",
-        autoClose:3000,
-        theme:"light",
-        className:"custom-toast-error",
+    if (password !== confirmPassword) {
+      toast.error("Password do not match", {
+        position: "top-center",
+        autoClose: 3000,
+        theme: "light",
+        className: "custom-toast-error",
       });
       return;
+    } else {
+      //send user details to server
+      const payload = {
+        "firstName": firstname,
+        "lastName": lastname,
+        "email": email,
+        "password": password
+      }
+      const response = SignUpApi(payload);
+      if (response.status === 200) {
+        notify();
+        setTimeout(() => {
+          navigate("/SignIn");
+        }, 2000);
+      }
+
     }
-    notify();
-    setTimeout(() => {
-      navigate("/SignIn"); 
-    }, 2000);
-    
-    
+
   };
   return (
     <Box
@@ -111,7 +122,7 @@ const Signup = () => {
           <Link to="/SignIn" style={{ color: "#ffcc00", textDecoration: "none", fontWeight: "bold" }}>
             Sign In
           </Link>
-          
+
         </Typography>
       </form>
       <ToastContainer />
