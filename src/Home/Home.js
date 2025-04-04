@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import DictaphoneIcon from "./DictaphoneIcon";
 import backgroundImage from "../assets/5570834.jpg";
 import AppBarComponent from "./AppBarComponent"; // Import AppBarComponent
+import RevenueChart from "../Dashboard/RevenueChart";
 
 function Home() {
   const [isDictaphoneOpen, setIsDictaphoneOpen] = React.useState(false);
@@ -30,6 +31,7 @@ function Home() {
     >
       {/* Use the extracted AppBarComponent */}
       <AppBarComponent user={user} />
+      <RevenueChart/>
 
       {/* Floating Dictaphone Button */}
       <Box

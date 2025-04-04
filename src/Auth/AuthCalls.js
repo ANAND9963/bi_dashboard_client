@@ -1,5 +1,5 @@
 import axios from "axios";
-const PORT = 3001;
+const PORT = 3000;
 export const SignUpApi = async (payload) => {
     console.log("hit",payload);
     const URL = `${PORT}/api/signUp`;
