@@ -4,7 +4,8 @@ import DictaphoneIcon from "./DictaphoneIcon";
 import backgroundImage from "../assets/5570834.jpg";
 import AppBarComponent from "./AppBarComponent";
 // import SupplierDashboard from "../Dashboard/Supplier/SupplierDashboard";
-import SupplierCategoryDonutChart from "../Dashboard/SupplierCategoryDonutChart"; // Import AppBarComponent
+// import SupplierCategoryDonutChart from "../Dashboard/SupplierCategoryDonutChart";
+import TopSuppliersBarChart from "../Dashboard/TopSuppliersBarChart"; // Import AppBarComponent
 // import RevenueChart from "../Dashboard/RevenueChart";
 // import OrderCountChart from "../Dashboard/OrderCountChart";
 
@@ -37,7 +38,8 @@ function Home() {
       {/*<RevenueChart/>*/}
       {/*  <OrderCountChart/>*/}
       {/*  <SupplierDashboard/>*/}
-        <SupplierCategoryDonutChart/>
+      {/*  <SupplierCategoryDonutChart/>*/}
+        <TopSuppliersBarChart/>
       {/* Floating Dictaphone Button */}
       <Box
         onClick={handleDictaphoneIconClick}
