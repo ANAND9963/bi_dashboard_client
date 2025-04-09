@@ -2,9 +2,10 @@ import React from "react";
 import Box from "@mui/material/Box";
 import DictaphoneIcon from "./DictaphoneIcon";
 import backgroundImage from "../assets/5570834.jpg";
-import AppBarComponent from "./AppBarComponent"; // Import AppBarComponent
+import AppBarComponent from "./AppBarComponent";
+import SupplierDashboard from "../Dashboard/Supplier/SupplierDashboard"; // Import AppBarComponent
 // import RevenueChart from "../Dashboard/RevenueChart";
-import OrderCountChart from "../Dashboard/OrderCountChart";
+// import OrderCountChart from "../Dashboard/OrderCountChart";
 
 function Home() {
   const [isDictaphoneOpen, setIsDictaphoneOpen] = React.useState(false);
@@ -33,8 +34,8 @@ function Home() {
       {/* Use the extracted AppBarComponent */}
       <AppBarComponent user={user} />
       {/*<RevenueChart/>*/}
-        <OrderCountChart/>
-
+      {/*  <OrderCountChart/>*/}
+        <SupplierDashboard/>
       {/* Floating Dictaphone Button */}
       <Box
         onClick={handleDictaphoneIconClick}
