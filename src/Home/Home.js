@@ -3,9 +3,14 @@ import Box from "@mui/material/Box";
 import DictaphoneIcon from "./DictaphoneIcon";
 import backgroundImage from "../assets/5570834.jpg";
 import AppBarComponent from "./AppBarComponent";
+// import SupplierContactCards from "../Dashboard/Supplier/SupplierContactCards";
+// import SupplierDeliveryTable from "../Dashboard/Supplier/SupplierDeliveryTable";
+// import SupplierGeoMap from "../Dashboard/Supplier/SupplierGeoMap";
+import SupplierGeoTable from "../Dashboard/Supplier/SupplierGeoTable";
 // import SupplierDashboard from "../Dashboard/Supplier/SupplierDashboard";
 // import SupplierCategoryDonutChart from "../Dashboard/SupplierCategoryDonutChart";
-import TopSuppliersBarChart from "../Dashboard/TopSuppliersBarChart"; // Import AppBarComponent
+// import TopSuppliersBarChart from "../Dashboard/TopSuppliersBarChart";
+// import CustomerGeoMap from "../Dashboard/CustomerGeoMap"; // Import AppBarComponent
 // import RevenueChart from "../Dashboard/RevenueChart";
 // import OrderCountChart from "../Dashboard/OrderCountChart";
 
@@ -39,7 +44,12 @@ function Home() {
       {/*  <OrderCountChart/>*/}
       {/*  <SupplierDashboard/>*/}
       {/*  <SupplierCategoryDonutChart/>*/}
-        <TopSuppliersBarChart/>
+      {/*  <TopSuppliersBarChart/>*/}
+      {/*  <CustomerGeoMap/>*/}
+      {/*  <SupplierContactCards/>*/}
+      {/*  <SupplierDeliveryTable/>*/}
+      {/*  <SupplierGeoMap/>*/}
+        <SupplierGeoTable/>
       {/* Floating Dictaphone Button */}
       <Box
         onClick={handleDictaphoneIconClick}
