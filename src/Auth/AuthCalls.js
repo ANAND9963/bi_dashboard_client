@@ -5,12 +5,10 @@ export const SignUpApi = async (payload) => {
     const URL = `${PORT}/api/signUp`;
     try {
         const data = await axios.post(URL, payload);
-       return data;
+        return data;
     } catch (err) {
         return err.response;
         console.log(err);
-        
-       
     }
 }
 export const SignInApi = async (payload) => {
