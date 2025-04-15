@@ -3,8 +3,12 @@ import Box from "@mui/material/Box";
 import DictaphoneIcon from "./DictaphoneIcon";
 import backgroundImage from "../assets/5570834.jpg";
 import AppBarComponent from "./AppBarComponent";
+import LowStockAlerts from "../Dashboard/WareHouse/LowStockAlerts";
+import VehicleTempViolations from "../Dashboard/WareHouse/VehicleTempViolations";
+import StockGroupUsageChart from "../Dashboard/WareHouse/StockGroupUsageChart";
+import PackageTypeCountTable from "../Dashboard/WareHouse/PackageTypeCountTable";
 // import TopSellingItems from "../Dashboard/WareHouse/TopSellingItems";
-import ColdRoomTemperatureStats from "../Dashboard/WareHouse/ColdRoomTemperatureStats";
+// import ColdRoomTemperatureStats from "../Dashboard/WareHouse/ColdRoomTemperatureStats";
 // import SupplierContactCards from "../Dashboard/Supplier/SupplierContactCards";
 // import SupplierDeliveryTable from "../Dashboard/Supplier/SupplierDeliveryTable";
 // import SupplierGeoMap from "../Dashboard/Supplier/SupplierGeoMap";
@@ -52,9 +56,13 @@ function Home() {
       {/*  <SupplierDeliveryTable/>*/}
       {/*  <TopSellingItems />*/}
       {/*  <SupplierGeoMap/>*/}
-        <ColdRoomTemperatureStats/>
+      {/*  <ColdRoomTemperatureStats/>*/}
       {/*  <SupplierGeoTable/>*/}
       {/* Floating Dictaphone Button */}
+      {/*  <LowStockAlerts/>*/}
+      {/*  <VehicleTempViolations/>*/}
+      {/*  <StockGroupUsageChart/>*/}
+        <PackageTypeCountTable/>
       <Box
         onClick={handleDictaphoneIconClick}
         sx={{
