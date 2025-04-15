@@ -3,10 +3,12 @@ import Box from "@mui/material/Box";
 import DictaphoneIcon from "./DictaphoneIcon";
 import backgroundImage from "../assets/5570834.jpg";
 import AppBarComponent from "./AppBarComponent";
+// import TopSellingItems from "../Dashboard/WareHouse/TopSellingItems";
+import ColdRoomTemperatureStats from "../Dashboard/WareHouse/ColdRoomTemperatureStats";
 // import SupplierContactCards from "../Dashboard/Supplier/SupplierContactCards";
 // import SupplierDeliveryTable from "../Dashboard/Supplier/SupplierDeliveryTable";
 // import SupplierGeoMap from "../Dashboard/Supplier/SupplierGeoMap";
-import SupplierGeoTable from "../Dashboard/Supplier/SupplierGeoTable";
+// import SupplierGeoTable from "../Dashboard/Supplier/SupplierGeoTable";
 // import SupplierDashboard from "../Dashboard/Supplier/SupplierDashboard";
 // import SupplierCategoryDonutChart from "../Dashboard/SupplierCategoryDonutChart";
 // import TopSuppliersBarChart from "../Dashboard/TopSuppliersBarChart";
@@ -48,8 +50,10 @@ function Home() {
       {/*  <CustomerGeoMap/>*/}
       {/*  <SupplierContactCards/>*/}
       {/*  <SupplierDeliveryTable/>*/}
+      {/*  <TopSellingItems />*/}
       {/*  <SupplierGeoMap/>*/}
-        <SupplierGeoTable/>
+        <ColdRoomTemperatureStats/>
+      {/*  <SupplierGeoTable/>*/}
       {/* Floating Dictaphone Button */}
       <Box
         onClick={handleDictaphoneIconClick}
