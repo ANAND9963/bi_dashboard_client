@@ -34,9 +34,9 @@ const Hero = () => {
           gap: 1,
         }}
       >
-        <StyledButton variant="outlined" onClick={()=>navigate("/SignIn")}>Login</StyledButton>
+        <StyledButton variant="outlined" onClick={()=>navigate("/sign-in")}>Login</StyledButton>
 
-        <StyledButton variant="outlined" onClick={()=>navigate("/Signup")}>Sign Up</StyledButton>
+        <StyledButton variant="outlined" onClick={()=>navigate("/sign-up")}>Sign Up</StyledButton>
       </Box>
 
       <Typography variant="h3" fontWeight={700} gutterBottom>

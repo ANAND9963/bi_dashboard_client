@@ -1,29 +1,51 @@
 import React, { useState } from "react";
-import "./SignIn.css";
+import "./Auth.css";
 import { Box, Typography } from "@mui/material";
-import backgroundImage from "../assets/19187761.jpg";
+import backgroundImage from "../assets/IMG-20250216-WA0011.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SignUpApi } from "./AuthCalls";
-const Signup = () => {
+const SignUp = () => {
   const navigate = useNavigate();
-  const notify = () =>
-    toast.success("you are Signedup successfully!", {
-      position: "top-center",
-      autoClose: 3000,
-      theme: "light",
-      className: "custom-toast-sucess",
-      closeButton: false,
-      hideProgressBar: true
-    });
+
 
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const submitForm = (e) => {
+    const notify = (message, type) => {
+      if (type === "success") {
+        toast.success(message, {
+          position: "top-center",
+          autoClose: 3000,
+          theme: "light",
+          className: "custom-toast-sucess",
+          closeButton: false,
+          hideProgressBar: true
+        });
+      } else if ("error") {
+        toast.error(message, {
+          position: "top-center",
+          autoClose: 3000,
+          theme: "light",
+          className: "custom-toast-sucess",
+          closeButton: false,
+          hideProgressBar: true
+        });
+      } else {
+        toast.info(message, {
+          position: "top-center",
+          autoClose: 3000,
+          theme: "light",
+          className: "custom-toast-sucess",
+          closeButton: false,
+          hideProgressBar: true
+        });
+      }
+    }
+  const submitForm = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Password do not match", {
@@ -41,14 +63,21 @@ const Signup = () => {
         "email": email,
         "password": password
       }
-      const response = SignUpApi(payload);
-      if (response.status === 200) {
-        notify();
+      const response = await SignUpApi(payload);
+      console.log("res",response?.data?.message);
+      
+      if (response?.status === 201) {
+        notify(response?.data?.message,"success");
         setTimeout(() => {
-          navigate("/SignIn");
+          navigate("/sign-In");
         }, 2000);
-      }
-
+      }else if(response?.status === 409){
+        notify(response?.data?.message,"info");
+      
+    }else{
+      notify(response?.errorCode,"error");
+    }
+     
     }
 
   };
@@ -71,14 +100,14 @@ const Signup = () => {
         backdropFilter: "blur(3px)",
       }}
     >
-      <form className="login-form-container" onSubmit={submitForm}>
+      <form className="formContainer" onSubmit={submitForm}>
         <header>
           <Typography variant="h4" fontWeight={700} gutterBottom>
             Signup
           </Typography>
         </header>
         <Typography variant="p" fontWeight={700} gutterBottom>
-          Welcome please Signup to continue
+          Welcome please Sign-up to continue
         </Typography>
         <input
           name="FirstName"
@@ -119,10 +148,9 @@ const Signup = () => {
         <button type="submit">Register</button>
         <Typography mt={2}>
           Already have an account?{" "}
-          <Link to="/SignIn" style={{ color: "#ffcc00", textDecoration: "none", fontWeight: "bold" }}>
-            Sign In
+          <Link to="/Sign-in" style={{ color: "#ffcc00", textDecoration: "none", fontWeight: "bold" }}>
+            Sign-In
           </Link>
-
         </Typography>
       </form>
       <ToastContainer />
@@ -130,4 +158,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignUp;

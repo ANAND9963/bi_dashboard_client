@@ -1,13 +1,16 @@
 import axios from "axios";
-const PORT = 3000;
+const PORT = "http://localhost:8080"; 
 export const SignUpApi = async (payload) => {
     console.log("hit",payload);
     const URL = `${PORT}/api/signUp`;
     try {
-        const response = await axios.post(URL, payload);
-       return response;
+        const data = await axios.post(URL, payload);
+       return data;
     } catch (err) {
+        return err.response;
         console.log(err);
+        
+       
     }
 }
 export const SignInApi = async (payload) => {
@@ -21,3 +24,4 @@ export const SignInApi = async (payload) => {
         console.log(err);
     }
 }
+
