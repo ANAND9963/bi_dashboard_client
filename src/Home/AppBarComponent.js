@@ -50,7 +50,7 @@ const AppBarComponent = ({ user }) => {
     } else if (setting === "Dashboard") {
       navigate("/Home");
     } else if (setting === "Logout") {
-      navigate("/SignIn")
+      navigate("/sign-in")
       console.log("Logging Out...");
     }
   };
