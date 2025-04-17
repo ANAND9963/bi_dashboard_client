@@ -8,23 +8,27 @@ const Hero = () => {
     const navigate = useNavigate();
   return (
     <Box
-      sx={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "white",
-        textAlign: "center",
-        px: 3,
-        backgroundColor: "rgba(0, 0, 0, 0.5)", // Dark overlay for better readability
-        backdropFilter: "blur(3px)",
-      }}
-    >
+    sx={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100vw",
+      height: "100vh",
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "white",
+      textAlign: "center",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      backdropFilter: "blur(3px)",
+    }}
+  >
+  
       <Box
         sx={{
           position: "absolute",

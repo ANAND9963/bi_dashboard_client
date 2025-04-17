@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import SupplierKpiCards from './SupplierKpiCards';
+import SupplierKpiCards from '../SupplierKpiCards';
 import SupplierTransactionChart from './SupplierTransactionChart';
 import SupplierTransactionTable from './SupplierTransactionTable';
 
@@ -42,11 +42,11 @@ const SupplierDashboard = () => {
 
     return (
         <div className="dashboard-container">
-            <h2 style={{ color: 'white' }}>Supplier Transactions Dashboard</h2>
+            <h2 style={{ color: 'black' }}>Supplier Transactions Dashboard</h2>
 
             <div className="chart-controls">
                 <div>
-                    <label style={{ color: 'white' }}>Year: </label>
+                    <label style={{ color: 'black' }}>Year: </label>
                     <select value={year} onChange={e => setYear(e.target.value)}>
                         {[2013, 2014, 2015, 2016, 2017].map(y => (
                             <option key={y} value={y}>{y}</option>

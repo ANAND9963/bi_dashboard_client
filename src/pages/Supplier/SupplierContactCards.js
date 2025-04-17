@@ -28,7 +28,7 @@ const SupplierContactCards = () => {
     };
 
     return (
-        <div className="p-4 text-white">
+        <div className="p-4 ">
             {/* Dropdown */}
             <select
                 className="w-full p-2 mb-4 rounded bg-[#2c2c2c] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"

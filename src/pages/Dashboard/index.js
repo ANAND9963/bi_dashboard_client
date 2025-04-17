@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Area from "./Visualization/Area"
-import Bar from "./Visualization/Bar"
-import "./CSS/Style.css"
+import "../CSS/Style.css"
 import {CustomerGeoMap,OrderCountChart,RevenueChart_1,RevenueChart_2,SupplierCategoryDonutChart,TopSuppliersBarChart} from "./Visualization";
 const Dashboard = () => {
   const [panels, setPanels] = useState([
