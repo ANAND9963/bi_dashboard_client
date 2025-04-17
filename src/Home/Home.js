@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import DictaphoneIcon from "./DictaphoneIcon";
 import backgroundImage from "../assets/5570834.jpg";
@@ -21,8 +21,10 @@ import  Dashboard  from "../Dashboard/index.js";
 // import RevenueChart from "../Dashboard/RevenueChart";
 // import OrderCountChart from "../Dashboard/OrderCountChart";
 
+import VoiceQueryPopup from "./VoiceQueryPopup";
+
 function Home() {
-  const [isDictaphoneOpen, setIsDictaphoneOpen] = React.useState(false);
+    const [isDictaphoneOpen, setIsDictaphoneOpen] = useState(false);
 
   // User details
   const user = {
@@ -30,57 +32,56 @@ function Home() {
     lastName: "",
   };
 
-  const handleDictaphoneIconClick = () => {
-    setIsDictaphoneOpen(!isDictaphoneOpen);
-  };
+    const [transcript, setTranscript] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
 
-  return (
-    <Box
-      sx={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      {/* Use the extracted NavBar */}
-      <NavBar user={user} />
-      <Dashboard/>
-      {/* <PackageTypeCountTable/> */}
-      {/*<RevenueChart/>*/}
-      {/*  <OrderCountChart/>*/}
-      {/*  <SupplierDashboard/>*/}
-      {/*  <SupplierCategoryDonutChart/>*/}
-      {/*  <TopSuppliersBarChart/>*/}
-      {/*  <CustomerGeoMap/>*/}
-      {/*  <SupplierContactCards/>*/}
-      {/*  <SupplierDeliveryTable/>*/}
-      {/*  <TopSellingItems />*/}
-      {/*  <SupplierGeoMap/>*/}
-      {/*  <ColdRoomTemperatureStats/>*/}
-      {/*  <SupplierGeoTable/>*/}
-      {/* Floating Dictaphone Button */}
-      {/*  <LowStockAlerts/>*/}
-      {/*  <VehicleTempViolations/>*/}
-      {/*  <StockGroupUsageChart/>*/}
-       
-      <Box
-        onClick={handleDictaphoneIconClick}
-        sx={{
-          position: "fixed",
-          bottom: isDictaphoneOpen ? "50%" : "8rem",
-          right: isDictaphoneOpen ? "50%" : "8rem",
-          transform: isDictaphoneOpen ? "translate(50%, 50%)" : "none",
-          transition: "all 0.3s ease",
-          zIndex: 10,
-        }}
-      >
-        <DictaphoneIcon />
-      </Box>
-    </Box>
-  );
+    const handleTranscript = (text) => {
+        setTranscript(text);
+        setShowPopup(true);
+    };
+
+    const handleDictaphoneIconClick = () => {
+        setIsDictaphoneOpen(!isDictaphoneOpen);
+    };
+
+    return (
+        <Box
+            sx={{
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
+            {/* Top AppBar */}
+            <NavBar user={user} />
+            <Dashboard/>
+            {/* Mic activation & voice popup */}
+            <Box
+                onClick={handleDictaphoneIconClick}
+                sx={{
+                    position: "fixed",
+                    bottom: isDictaphoneOpen ? "50%" : "8rem",
+                    right: isDictaphoneOpen ? "50%" : "8rem",
+                    transform: isDictaphoneOpen ? "translate(50%, 50%)" : "none",
+                    transition: "all 0.3s ease",
+                    zIndex: 10,
+                }}
+            >
+                {/* 🔥 Pass transcript handler */}
+                <DictaphoneIcon onTranscriptComplete={handleTranscript} />
+            </Box>
+
+            {/* Chart/Table Popup */}
+            <VoiceQueryPopup
+                transcript={transcript}
+                show={showPopup}
+                onClose={() => setShowPopup(false)}
+            />
+        </Box>
+    );
 }
 
 export default Home;

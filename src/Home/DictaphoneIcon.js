@@ -3,7 +3,7 @@ import { Mic, Stop, Delete } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { IconButton, Box, Typography, CircularProgress } from "@mui/material";
 
-export default function DictaphoneIcon() {
+export default function DictaphoneIcon({ onTranscriptComplete }) {
   const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [loading, setLoading] = useState(false);
@@ -40,7 +40,13 @@ export default function DictaphoneIcon() {
           });
 
           const result = await response.json();
-          setTranscript(result.text || "No speech detected.");
+          const finalText = result.text || "No speech detected.";
+          setTranscript(finalText);
+
+          // 🔥 Notify parent with transcript
+          if (onTranscriptComplete) {
+            onTranscriptComplete(finalText);
+          }
         } catch (error) {
           console.error("Error during transcription:", error);
           setTranscript("Transcription failed.");
@@ -74,80 +80,86 @@ export default function DictaphoneIcon() {
   };
 
   return (
-    <Box
-      position="absolute"
-      top="50%"
-      left="50%"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      gap={2}
-      zIndex={1000}
-      sx={{
-        transform: "translate(-50%, -50%)", // This centers the element
-      }}
-    >
-      {/* Microphone Button with Dynamic Effects */}
-      <motion.div
-        animate={{ scale: isRecording ? 1.5 : 1 }}
-        transition={{ duration: 0.3 }}
-        style={{
-          position: "relative",
-          background: isRecording
-            ? "linear-gradient(to top, red, white)"
-            : "linear-gradient(to top, blue, skyblue)",
-          padding: isRecording ? "30px" : "15px",
-          borderRadius: "50%",
-          boxShadow: isRecording ? "0px 0px 30px rgba(255,0,0,0.8)" : "0px 0px 10px rgba(0,0,255,0.6)",
-          transition: "all 0.3s ease-in-out",
-          backdropFilter: isRecording ? "blur(10px)" : "none",
-        }}
+      <Box
+          position="absolute"
+          top="50%"
+          left="50%"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          gap={2}
+          zIndex={1000}
+          sx={{
+            transform: "translate(-50%, -50%)",
+          }}
       >
-        {isRecording && (
-          <motion.div
-            initial={{ opacity: 0.5, scale: 1 }}
-            animate={{ opacity: 0, scale: 2 }}
-            transition={{ duration: 1, repeat: Infinity }}
+        {/* Microphone Button with Dynamic Effects */}
+        <motion.div
+            animate={{ scale: isRecording ? 1.5 : 1 }}
+            transition={{ duration: 0.3 }}
             style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 100,
-              height: 100,
-              backgroundColor: "rgba(255,0,0,0.5)",
+              position: "relative",
+              background: isRecording
+                  ? "linear-gradient(to top, red, white)"
+                  : "linear-gradient(to top, blue, skyblue)",
+              padding: isRecording ? "30px" : "15px",
               borderRadius: "50%",
+              boxShadow: isRecording
+                  ? "0px 0px 30px rgba(255,0,0,0.8)"
+                  : "0px 0px 10px rgba(0,0,255,0.6)",
+              transition: "all 0.3s ease-in-out",
+              backdropFilter: isRecording ? "blur(10px)" : "none",
             }}
-          />
-        )}
-        <IconButton onClick={toggleRecording} color="primary">
-          {isRecording ? <Stop sx={{ fontSize: 50, color: "white" }} /> : <Mic sx={{ fontSize: 50, color: "white" }} />}
-        </IconButton>
-      </motion.div>
-
-      {/* Loading Indicator */}
-      {loading && <CircularProgress color="secondary" />}
-
-      {/* Transcription Display */}
-      {transcript && (
-        <Box
-          p={2}
-          borderRadius="12px"
-          textAlign="center"
-          bgcolor="rgba(0, 0, 0, 0.7)"
-          color="white"
-          boxShadow="0px 4px 10px rgba(255, 255, 255, 0.2)"
         >
-          <Typography variant="body1">{transcript}</Typography>
-        </Box>
-      )}
+          {isRecording && (
+              <motion.div
+                  initial={{ opacity: 0.5, scale: 1 }}
+                  animate={{ opacity: 0, scale: 2 }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: 100,
+                    height: 100,
+                    backgroundColor: "rgba(255,0,0,0.5)",
+                    borderRadius: "50%",
+                  }}
+              />
+          )}
+          <IconButton onClick={toggleRecording} color="primary">
+            {isRecording ? (
+                <Stop sx={{ fontSize: 50, color: "white" }} />
+            ) : (
+                <Mic sx={{ fontSize: 50, color: "white" }} />
+            )}
+          </IconButton>
+        </motion.div>
 
-      {/* Clear Transcript Button */}
-      {transcript && (
-        <IconButton onClick={() => setTranscript("")} color="warning">
-          <Delete sx={{ fontSize: 40, color: "white" }} />
-        </IconButton>
-      )}
-    </Box>
+        {/* Loading Indicator */}
+        {loading && <CircularProgress color="secondary" />}
+
+        {/* Transcription Display */}
+        {transcript && (
+            <Box
+                p={2}
+                borderRadius="12px"
+                textAlign="center"
+                bgcolor="rgba(0, 0, 0, 0.7)"
+                color="white"
+                boxShadow="0px 4px 10px rgba(255, 255, 255, 0.2)"
+            >
+              <Typography variant="body1">{transcript}</Typography>
+            </Box>
+        )}
+
+        {/* Clear Transcript Button */}
+        {transcript && (
+            <IconButton onClick={() => setTranscript("")} color="warning">
+              <Delete sx={{ fontSize: 40, color: "white" }} />
+            </IconButton>
+        )}
+      </Box>
   );
 }
