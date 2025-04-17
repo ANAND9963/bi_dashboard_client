@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-
+const PORT=process.env.REACT_APP_API_URL;
 const StockGroupUsageChart = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/warehouse-analytics/stock-group-usage')
+        axios.get(`${PORT}api/warehouse-analytics/stock-group-usage`)
             .then(res => setData(res.data));
     }, []);
 

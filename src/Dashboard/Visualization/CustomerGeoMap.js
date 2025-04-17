@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Popup, CircleMarker, useMap } from 'react-leaf
 import 'leaflet/dist/leaflet.css';
 import 'leaflet.heat/dist/leaflet-heat.js';
 import L from 'leaflet';
-
+const PORT=process.env.REACT_APP_API_URL;
 const HeatmapLayer = ({ points }) => {
     const map = useMap();
 
@@ -39,7 +39,7 @@ const CustomerGeoMap = () => {
     const [showHeatmap, setShowHeatmap] = useState(true);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/customers/locations')
+        axios.get(`${PORT}api/customers/locations`)
             .then(res => setLocations(res.data))
             .catch(err => console.error('Error fetching locations:', err));
     }, []);
@@ -68,7 +68,7 @@ const CustomerGeoMap = () => {
                 boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
                 border: '1px solid #333'
             }}>
-                <MapContainer center={[20, 0]} zoom={2} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
+                <MapContainer center={[20, 0]} zoom={2} scrollWheelZoom={false} style={{ height: '60%', width: '100%' }}>
                     <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"

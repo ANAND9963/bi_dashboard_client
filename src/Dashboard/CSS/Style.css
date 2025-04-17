@@ -1,0 +1,15 @@
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px, 1fr)); /* Adjusts automatically */
+    /* gap: 16px; */
+  }
+  
+  .panel {
+    background: #000;
+    padding: 20px;
+    color: #fff;
+    /* border-radius: 8px; */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  

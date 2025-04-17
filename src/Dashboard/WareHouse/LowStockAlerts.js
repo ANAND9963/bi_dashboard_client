@@ -1,12 +1,12 @@
 
     import React, { useEffect, useState } from 'react';
     import axios from 'axios';
-
+    const PORT=process.env.REACT_APP_API_URL;
     const LowStockAlerts = () => {
         const [items, setItems] = useState([]);
 
         useEffect(() => {
-            axios.get('http://localhost:8080/api/warehouse-analytics/stock-shortages')
+            axios.get(`${PORT}api/warehouse-analytics/stock-shortages`)
                 .then(res => setItems(res.data))
                 .catch(err => console.error('Error fetching low stock alerts:', err));
         }, []);

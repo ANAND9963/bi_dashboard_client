@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
     BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, Legend
 } from 'recharts';
-
+const PORT=process.env.REACT_APP_API_URL;
 const OrderCountChart = () => {
     const [startDate, setStartDate] = useState('2013-01-01');
     const [endDate, setEndDate] = useState('2013-12-31');
@@ -11,7 +11,7 @@ const OrderCountChart = () => {
 
     const fetchData = async (start, end) => {
         try {
-            const response = await axios.get('http://localhost:8080/api/purchase-orders/monthly', {
+            const response = await axios.get(`${PORT}api/purchase-orders/monthly`, {
                 params: {
                     startDate: start,
                     endDate: end

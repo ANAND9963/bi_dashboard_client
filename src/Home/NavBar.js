@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 const pages = ["Home", "Insights", "Blog"];
 const settings = ["Profile", "Dashboard", "Logout"];
 
-const AppBarComponent = ({ user }) => {
+const NavBar = ({ user }) => {
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -142,4 +142,4 @@ const AppBarComponent = ({ user }) => {
   );
 };
 
-export default AppBarComponent;
+export default NavBar;

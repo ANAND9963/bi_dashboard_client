@@ -1,13 +1,13 @@
 
         import React, { useEffect, useState } from 'react';
         import axios from 'axios';
-
+        const PORT=process.env.REACT_APP_API_URL;
         const ColdRoomTemperatureStats = () => {
             const [data, setData] = useState([]);
 
             useEffect(() => {
                 axios
-                    .get('http://localhost:8080/api/warehouse-analytics/cold-room-temperatures')
+                    .get(`${PORT}api/warehouse-analytics/cold-room-temperatures`)
                     .then((res) => setData(res.data))
                     .catch((err) => console.error('Failed to fetch temperature data', err));
             }, []);

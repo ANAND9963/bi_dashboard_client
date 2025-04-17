@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from "recharts";
-import axiosInstance from "../api/axiosInstance";
+import axiosInstance from "../../api/axiosInstance";
 import { CSVLink } from "react-csv";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
 const formatLabel = (value) => value >= 1000 ? (value / 1000).toFixed(0) + "K" : value;
 
-const RevenueChart = () => {
+const RevenueChart_1 = () => {
   const [data, setData] = useState([]);
   const [startYear, setStartYear] = useState(2013);
   const [endYear, setEndYear] = useState(2017);
@@ -91,7 +91,7 @@ const RevenueChart = () => {
           headers={csvHeaders}
           data={data}
           filename="Quarterly_Business_KPIs.csv"
-          className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white"
+          className="bg-black-600 hover:bg-black-700 px-4 py-2 rounded text-white"
         >
           Export CSV
         </CSVLink>
@@ -124,27 +124,9 @@ const RevenueChart = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* AOV */}
-        <div>
-          <h3 className="text-lg mb-2">📦 Avg Order Value</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" tick={{ fill: "#fff" }} />
-              <YAxis
-                tick={{ fill: "#fff" }}
-                label={{ value: "Avg Order Value", angle: -90, position: "insideLeft", fill: "#fff" }}
-                tickFormatter={formatLabel}
-              />
-              <Tooltip formatter={(value) => value.toFixed(0)} />
-              <Legend />
-              <Bar dataKey="aov" fill="#ffc658" name="Avg Order Value" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
       </div>
     </div>
   );
 };
 
-export default RevenueChart;
+export default RevenueChart_1;

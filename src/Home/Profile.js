@@ -1,5 +1,5 @@
 import React from "react";
-import AppBarComponent from "./AppBarComponent";
+import NavBar from "./NavBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -59,7 +59,7 @@ const Profile = () => {
   return (
     <Box>
       {/* App Bar Component */}
-      <AppBarComponent user={user} />
+      <NavBar user={user} />
 
       {/* Profile Information */}
       <Box sx={{ p: 3 }}>

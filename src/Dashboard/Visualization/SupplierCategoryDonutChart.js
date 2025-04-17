@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
     PieChart, Pie, Cell, ResponsiveContainer
 } from 'recharts';
-
+const PORT=process.env.REACT_APP_API_URL;
 // Color palette for chart slices
 const COLORS = ['#42A5F5', '#66BB6A', '#FFA726', '#BA68C8', '#FF7043', '#26A69A'];
 
@@ -16,7 +16,7 @@ const SupplierCategoryDonutChart = () => {
 
     const fetchData = async () => {
         try {
-            const res = await axios.get('http://localhost:8080/api/suppliers/count-by-category');
+            const res = await axios.get(`${PORT}api/suppliers/count-by-category`);
             const formatted = res.data.map(item => ({
                 name: item.supplierCategoryName,
                 value: item.supplierCount

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+const PORT=process.env.REACT_APP_API_URL;
 const TopSellingItems = () => {
     const [items, setItems] = useState([]);
     const [filteredItems, setFilteredItems] = useState([]);
     const [selectedItem, setSelectedItem] = useState('');
     useEffect(() => {
-        axios.get('http://localhost:8080/api/warehouse-analytics/top-selling')
+        axios.get(`${PORT}api/warehouse-analytics/top-selling`)
             .then(res => {
                 setItems(res.data);
                 setFilteredItems(res.data);

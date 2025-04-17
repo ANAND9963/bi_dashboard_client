@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
-
+const PORT=process.env.REACT_APP_API_URL;
 const TopSuppliersBarChart = () => {
     const [chartData, setChartData] = useState([]);
     const [suppliers, setSuppliers] = useState([]);
@@ -16,7 +16,7 @@ const TopSuppliersBarChart = () => {
     // ✅ fetch supplier list
     const fetchSupplierList = async () => {
         try {
-            const res = await axios.get('http://localhost:8080/api/suppliers/list');
+            const res = await axios.get(`${PORT}api/suppliers/list`);
             setSuppliers(res.data);
         } catch (err) {
             console.error('Failed to fetch suppliers:', err);

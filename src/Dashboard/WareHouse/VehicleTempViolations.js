@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+const PORT=process.env.REACT_APP_API_URL;
 const VehicleTempViolations = () => {
     const [records, setRecords] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/warehouse-analytics/vehicle-temperature-alerts')
+        axios.get(`${PORT}api/warehouse-analytics/vehicle-temperature-alerts`)
             .then(res => setRecords(res.data));
     }, []);
 
