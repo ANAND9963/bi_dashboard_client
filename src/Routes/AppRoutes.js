@@ -49,7 +49,6 @@ const AppRoutes = () => {
           <Route path="StockGroupUsageChart" element={<StockGroupUsageChart />} />
           <Route path="TopSellingItems" element={<TopSellingItems />} />
           <Route path="VehicleTempViolations" element={<VehicleTempViolations />} />
-          
         </Route>
    
   </Route>

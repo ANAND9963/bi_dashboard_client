@@ -7,10 +7,6 @@ import DictaphoneIcon from "./DictaphoneIcon";
 import VoiceQueryPopup from "./VoiceQueryPopup";
 import  Dashboard  from "../pages/Dashboard";
 
-
-
-
-
 function Home() {
   const [isDictaphoneOpen, setIsDictaphoneOpen] = useState(false);
   const [transcript, setTranscript] = useState("");
