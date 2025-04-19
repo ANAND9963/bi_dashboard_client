@@ -6,11 +6,21 @@ const TopSellingItems = () => {
     const [filteredItems, setFilteredItems] = useState([]);
     const [selectedItem, setSelectedItem] = useState('');
     useEffect(() => {
-        axios.get(`${PORT}api/warehouse-analytics/top-selling`)
-            .then(res => {
+        axios.get(`${PORT}api/warehouse-analytics/top-selling`,{
+            headers: {
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "true"
+                // "Authorization": "Bearer YOUR_TOKEN_HERE" // Uncomment if using auth
+            }}).then(res => {
                 setItems(res.data);
                 setFilteredItems(res.data);
-            });}, []);
+            });}, []).catch(err => {
+                if (err.response) {
+                    console.error(" Error Response:", err.response.status, err.response.data);
+                } else {
+                    console.error(" Network Error:", err.message);
+                }
+            }, [])
     const handleFilterChange = (value) => {
         setSelectedItem(value);
         if (value === '') {

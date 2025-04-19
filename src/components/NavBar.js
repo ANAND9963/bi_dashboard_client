@@ -110,13 +110,13 @@ const NavBar = ({ user }) => {
       <Typography sx={{ color: "white", mr: 2, fontWeight: 500 }}>
         {user.firstName} {user.lastName}
       </Typography>
-      <Tooltip title="Open settings">
+      {/* <Tooltip title="Open settings"> */}
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
           <Avatar sx={{ bgcolor: "#1e88e5" }}>
             {user.firstName.charAt(0).toUpperCase()}
           </Avatar>
         </IconButton>
-      </Tooltip>
+      {/* </Tooltip> */}
     </Box>
   </Toolbar>
 </AppBar>

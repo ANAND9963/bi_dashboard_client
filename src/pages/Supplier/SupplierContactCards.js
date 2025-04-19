@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+const PORT = process.env.REACT_APP_API_URL;
 const SupplierContactCards = () => {
     const [contacts, setContacts] = useState([]);
     const [selectedSupplier, setSelectedSupplier] = useState('');
@@ -10,14 +10,30 @@ const SupplierContactCards = () => {
     const pageSize = 6;
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/suppliers/contacts')
-            .then(res => setContacts(res.data));
-    }, []);
+        axios.get(`${PORT}api/suppliers/contacts`, {
+            headers: {
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "true"
+                // "Authorization": "Bearer YOUR_TOKEN_HERE" // Uncomment if using auth
+            },
 
-    const supplierNames = [...new Set(contacts.map(c => c.supplierName))];
+        })
+            .then(res =>
+                setContacts(res.data)
+            )
+            .catch(err => {
+                if (err.response) {
+                    console.error(" Error Response:", err.response.status, err.response.data);
+                } else {
+                    console.error(" Network Error:", err.message);
+                }
+            }, [])
+    })
+
+    const supplierNames = [...new Set(contacts?.map(c => c.supplierName))];
 
     const filtered = selectedSupplier
-        ? contacts.filter(c => c.supplierName === selectedSupplier)
+        ? contacts?.filter(c => c.supplierName === selectedSupplier)
         : contacts;
 
     const totalPages = Math.ceil(filtered.length / pageSize);
@@ -94,8 +110,8 @@ const SupplierContactCards = () => {
                         Prev
                     </button>
                     <span className="text-gray-300 self-center">
-            Page {currentPage} of {totalPages}
-          </span>
+                        Page {currentPage} of {totalPages}
+                    </span>
                     <button
                         className="px-3 py-1 rounded bg-gray-700 text-white disabled:opacity-40"
                         onClick={() => setCurrentPage((p) => p + 1)}
