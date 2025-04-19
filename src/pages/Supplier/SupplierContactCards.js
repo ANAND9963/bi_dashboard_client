@@ -10,10 +10,20 @@ const SupplierContactCards = () => {
     const pageSize = 6;
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/suppliers/contacts')
-            .then(res => setContacts(res.data));
+        axios.get(
+            'https://5bf1-2603-8080-a900-8b50-1b6-61ed-b176-9ac6.ngrok-free.app/api/suppliers/contacts',
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "ngrok-skip-browser-warning": "true"
+                    // "Authorization": "Bearer YOUR_TOKEN_HERE" // Uncomment if using auth
+                },
+                // withCredentials: true // Needed if backend uses cookies or session-based auth
+            }
+        )
+            .then(res => setContacts(res.data))
+            .catch(err => console.error("API call failed:", err));
     }, []);
-
     const supplierNames = [...new Set(contacts.map(c => c.supplierName))];
 
     const filtered = selectedSupplier
