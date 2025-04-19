@@ -5,11 +5,12 @@
   }
   
   .panel {
-    background: #000;
-    padding: 20px;
-    color: #fff;
+    padding: 10px;
+    color: #000;
     /* border-radius: 8px; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+  height: '400px';
+   width: '100%'
   }
   

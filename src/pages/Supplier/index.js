@@ -12,12 +12,13 @@ const Supplier = () => {
   return (
     <div className="flex h-screen">
       {/* Supplier Sidebar on the left */}
-      <div className="w-64 fixed top-16 left-0 bottom-0"> {/* Fixed positioning without margin */}
-        <SupplierSidebar /> {/* This will show the sidebar */}
+      <div className="w-64 h-full  bg-white border-r">
+        <SupplierSidebar />
       </div>
 
-      <div className="flex-1 ml-64 top-0 mt-16 p-4 overflow-auto"> {/* Removed top margin */}
-        {isDefault ? <DefaultPlaceholder img={bg} /> : <Outlet />}
+      {/* Right content */}
+      <div className="flex-1 h-full  bg-gray-100">
+        {isDefault ? <DefaultPlaceholder img={bg} text={"Supplier Dashboard"} /> : <Outlet />}
       </div>
     </div>
   );

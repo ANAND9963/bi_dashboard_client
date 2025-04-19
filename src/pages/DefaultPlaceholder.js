@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-const DefaultPlaceholder = ({img}) => {
+const DefaultPlaceholder = ({img,text}) => {
   return (
     <Box
       sx={{
@@ -26,7 +26,7 @@ const DefaultPlaceholder = ({img}) => {
           borderRadius: 2,
         }}
       >
-        Welcome To the Dashboard
+        Welcome To The {text} 
       </Typography>
     </Box>
   );

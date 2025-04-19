@@ -8,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-
+const PORT=process.env.REACT_APP_API_URL;
 // ✅ Override default icon URLs
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -35,11 +35,22 @@ const SupplierGeoMap = () => {
     const [selectedSupplier, setSelectedSupplier] = useState('');
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/suppliers/locations')
+         axios.get(`${PORT}api/suppliers/locations`,{
+            headers: {
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "true"
+                // "Authorization": "Bearer YOUR_TOKEN_HERE" // Uncomment if using auth
+            }})
             .then(res => {
                 const valid = res.data.filter(loc => loc.latitude && loc.longitude);
                 setLocations(valid);
-            });
+            }) .catch(err => {
+                if (err.response) {
+                    console.error(" Error Response:", err.response.status, err.response.data);
+                } else {
+                    console.error(" Network Error:", err.message);
+                }
+            }, [])
     }, []);
 
     const supplierNames = [...new Set(locations.map(loc => loc.supplierName))];

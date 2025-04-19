@@ -9,6 +9,7 @@ const Layout = ({ user }) => {
       <div className="flex">
         {/* Main Content */}
         <div className="bg-gray-200 flex-1 pt-0"> {/* Removed any top padding */}
+          {/* <h1>hiii</h1> */}
           <Outlet />
         </div>
       </div>

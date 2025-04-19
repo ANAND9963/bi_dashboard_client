@@ -4,9 +4,18 @@ const PORT=process.env.REACT_APP_API_URL;
 const VehicleTempViolations = () => {
     const [records, setRecords] = useState([]);
 
-    useEffect(() => {
-        axios.get(`${PORT}api/warehouse-analytics/vehicle-temperature-alerts`)
-            .then(res => setRecords(res.data));
+    useEffect(() =>{axios.get(`${PORT}api/warehouse-analytics/vehicle-temperature-alerts`,{
+            headers: {
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "true"
+                // "Authorization": "Bearer YOUR_TOKEN_HERE" // Uncomment if using auth
+            }}).then(res => setRecords(res.data)).catch(err => {
+                if (err.response) {
+                    console.error(" Error Response:", err.response.status, err.response.data);
+                } else {
+                    console.error(" Network Error:", err.message);
+                }
+            }, [])
     }, []);
 
     return (

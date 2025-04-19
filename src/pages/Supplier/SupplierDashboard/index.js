@@ -3,7 +3,7 @@ import axios from 'axios';
 import SupplierKpiCards from '../SupplierKpiCards';
 import SupplierTransactionChart from './SupplierTransactionChart';
 import SupplierTransactionTable from './SupplierTransactionTable';
-
+const PORT=process.env.REACT_APP_API_URL;
 const SupplierDashboard = () => {
     const [view, setView] = useState('chart');
     const [year, setYear] = useState('2013');
@@ -17,9 +17,20 @@ const SupplierDashboard = () => {
     const fetchData = async (selectedYear) => {
         const startDate = `${selectedYear}-01-01`;
         const endDate = `${selectedYear}-12-31`;
-        const response = await axios.get('http://localhost:8080/api/supplier-transactions/monthly', {
-            params: { startDate, endDate }
-        });
+        const response = await  axios.get(`${PORT}api/supplier-transactions/monthly`, {
+            params: { startDate, endDate },
+                headers: {
+                    "Content-Type": "application/json",
+                    "ngrok-skip-browser-warning": "true"
+                    // "Authorization": "Bearer YOUR_TOKEN_HERE" // Uncomment if using auth
+                }
+        }).catch(err => {
+            if (err.response) {
+                console.error(" Error Response:", err.response.status, err.response.data);
+            } else {
+                console.error(" Network Error:", err.message);
+            }
+        }, [])
 
         const formatted = response.data.map(d => ({
             name: `${d.transactionYear}-${String(d.transactionMonth).padStart(2, '0')}`,

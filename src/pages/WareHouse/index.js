@@ -12,12 +12,12 @@ const WareHouse = () => {
   return (
     <div className="flex h-screen">
       {/* Supplier Sidebar on the left */}
-      <div className="w-64 fixed top-16 left-0 bottom-0"> {/* Added margin-top of 16 */}
+      <div className="w-64  h-full bg-white border-r"> {/* Added margin-top of 16 */}
         <WareHouseSidebar /> {/* This will show the sidebar */}
       </div>
 
-      <div className="flex-1 ml-64 mt-16 p-4 overflow-auto"> {/* Removed top margin */}
-        {isDefault ? <DefaultPlaceholder img={bg} /> : <Outlet />}
+      <div className="flex-1 h-full  bg-gray-100"> {/* Removed top margin */}
+        {isDefault ? <DefaultPlaceholder img={bg} text={"WareHouse"}/> : <Outlet />}
       </div>
     </div>
   );

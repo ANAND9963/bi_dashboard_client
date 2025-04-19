@@ -3,7 +3,11 @@ import axios from 'axios';
 import {
     BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, Legend
 } from 'recharts';
-const PORT=process.env.REACT_APP_API_URL;
+const formatLabel = (value) =>
+    value >= 1000 ? (value / 1000).toFixed(0) + "K" : value;
+  
+const PORT = process.env.REACT_APP_API_URL;
+
 const OrderCountChart = () => {
     const [startDate, setStartDate] = useState('2013-01-01');
     const [endDate, setEndDate] = useState('2013-12-31');
@@ -15,6 +19,10 @@ const OrderCountChart = () => {
                 params: {
                     startDate: start,
                     endDate: end
+                },
+                headers: {
+                    "Content-Type": "application/json",
+                    "ngrok-skip-browser-warning": "true"
                 }
             });
 
@@ -29,7 +37,6 @@ const OrderCountChart = () => {
         }
     };
 
-    // 🔥 Fetch 2013 data on initial load
     useEffect(() => {
         fetchData(startDate, endDate);
     }, [startDate, endDate]);
@@ -39,34 +46,54 @@ const OrderCountChart = () => {
     };
 
     return (
-        <div className="p-4">
-            <h2>Monthly Orders Bar Chart</h2>
+        <div className="p-6 font-sans bg-gray-900 text-white">
+            {/* Heading */}
+            <h2 className="text-center text-xl font-semibold  mb-4">Monthly Orders Bar Chart</h2>
 
-            <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+            {/* Date Pickers and Fetch Button
+            <div className="flex gap-4 justify-center mb-4">
                 <div>
-                    <label>Start Date: </label>
+                    <label className="block text-sm ">Start Date:</label>
                     <input
                         type="date"
                         value={startDate}
                         onChange={e => setStartDate(e.target.value)}
+                        className="px-3 py-2 text-sm border rounded-md"
                     />
                 </div>
                 <div>
-                    <label>End Date: </label>
+                    <label className="block text-sm ">End Date:</label>
                     <input
                         type="date"
                         value={endDate}
                         onChange={e => setEndDate(e.target.value)}
+                        className="px-3 py-2 text-sm border rounded-md"
                     />
                 </div>
-                <button onClick={handleFetchClick}>Fetch</button>
-            </div>
+                <button
+                    onClick={handleFetchClick}
+                    className="px-4 py-2 text-sm bg-green-500 text-white rounded-md hover:bg-green-600"
+                >
+                    Fetch
+                </button>
+            </div> */}
 
+            {/* Bar Chart */}
             <ResponsiveContainer width="100%" height={400}>
-                <BarChart data={chartData}>
+                <BarChart data={chartData} >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" angle={-45} textAnchor="end" height={70} />
-                    <YAxis />
+                    <XAxis
+                        dataKey="name"
+                        tick={{ fill: "#fff" }}
+                    />
+                    <YAxis
+                                    tick={{ fill: "#fff" }}
+                                    label={{
+                                      value: "Revenue (K) & Orders",
+                                      angle: -90,
+                                      position: "insideLeft",
+                                      fill: "#fff",
+                                    }}    tickFormatter={formatLabel}/>
                     <Tooltip />
                     <Legend />
                     <Bar dataKey="count" fill="#4CAF50" />

@@ -9,7 +9,13 @@
                 axios
                     .get(`${PORT}api/warehouse-analytics/cold-room-temperatures`)
                     .then((res) => setData(res.data))
-                    .catch((err) => console.error('Failed to fetch temperature data', err));
+                    .catch(err => {
+                        if (err.response) {
+                            console.error(" Error Response:", err.response.status, err.response.data);
+                        } else {
+                            console.error(" Network Error:", err.message);
+                        }
+                    }, [])
             }, []);
 
             return (

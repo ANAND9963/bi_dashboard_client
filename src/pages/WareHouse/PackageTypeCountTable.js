@@ -5,9 +5,20 @@ const PackageTypeItemCounts = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`${PORT}api/warehouse-analytics/package-type-usage`)
+        axios.get(`${PORT}api/warehouse-analytics/package-type-usage`,{
+            headers: {
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "true"
+                // "Authorization": "Bearer YOUR_TOKEN_HERE" // Uncomment if using auth
+            }})
             .then(res => setData(res.data))
-            .catch(err => console.error('Error fetching package type stats:', err));
+            .catch(err => {
+                if (err.response) {
+                    console.error(" Error Response:", err.response.status, err.response.data);
+                } else {
+                    console.error(" Network Error:", err.message);
+                }
+            }, [])
     }, []);
 
     return (

@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+const PORT=process.env.REACT_APP_API_URL;
 const SupplierGeoTable = () => {
     const [rows, setRows] = useState([]);
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/suppliers/geo')
-            .then(res => setRows(res.data));
+        axios.get(`${PORT}/api/suppliers/geo`,{
+            headers: {
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "true"
+                // "Authorization": "Bearer YOUR_TOKEN_HERE" // Uncomment if using auth
+            }}).then(res => setRows(res.data)).catch(err => {
+                if (err.response) {
+                    console.error(" Error Response:", err.response.status, err.response.data);
+                } else {
+                    console.error(" Network Error:", err.message);
+                }
+            }, [])
     }, []);
 
     const filtered = rows.filter(r =>

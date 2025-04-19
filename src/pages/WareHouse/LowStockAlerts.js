@@ -6,9 +6,20 @@
         const [items, setItems] = useState([]);
 
         useEffect(() => {
-            axios.get(`${PORT}api/warehouse-analytics/stock-shortages`)
+            axios.get(`${PORT}api/warehouse-analytics/stock-shortages`,{
+                headers: {
+                    "Content-Type": "application/json",
+                    "ngrok-skip-browser-warning": "true"
+                    // "Authorization": "Bearer YOUR_TOKEN_HERE" // Uncomment if using auth
+                }})
                 .then(res => setItems(res.data))
-                .catch(err => console.error('Error fetching low stock alerts:', err));
+                .catch(err => {
+                    if (err.response) {
+                        console.error(" Error Response:", err.response.status, err.response.data);
+                    } else {
+                        console.error(" Network Error:", err.message);
+                    }
+                }, [])
         }, []);
 
         return (
