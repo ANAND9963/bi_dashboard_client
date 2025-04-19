@@ -23,42 +23,48 @@ function Home() {
     setIsDictaphoneOpen(!isDictaphoneOpen);
   };
 
-  return (
-    <Box
-      sx={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-    
-<Dashboard />
-      {/* Mic activation & voice popup */}
-      <Box
-        onClick={handleDictaphoneIconClick}
-        sx={{
-          position: "fixed",
-          bottom: isDictaphoneOpen ? "50%" : "8rem",
-          right: isDictaphoneOpen ? "50%" : "8rem",
-          transform: isDictaphoneOpen ? "translate(50%, 50%)" : "none",
-          transition: "all 0.3s ease",
-          zIndex: 10,
-        }}
-      >
-        <DictaphoneIcon onTranscriptComplete={handleTranscript} />
-      </Box>
+    return (
+        <Box sx={{ position: "relative" }}>
+            {/* 🔷 This is your MAIN blurred content */}
+            <Box
+                sx={{
+                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    minHeight: "100vh",
+                    display: "flex",
+                    flexDirection: "column",
+                    filter: showPopup ? "blur(5px)" : "none",
+                    transition: "filter 0.3s ease",
+                }}
+            >
+                <Dashboard />
 
-      {/* Chart/Table Popup */}
-      <VoiceQueryPopup
-        transcript={transcript}
-        show={showPopup}
-        onClose={() => setShowPopup(false)}
-      />
-    </Box>
-  );
+                <Box
+                    onClick={handleDictaphoneIconClick}
+                    sx={{
+                        position: "fixed",
+                        bottom: isDictaphoneOpen ? "50%" : "8rem",
+                        right: isDictaphoneOpen ? "50%" : "8rem",
+                        transform: isDictaphoneOpen ? "translate(50%, 50%)" : "none",
+                        transition: "all 0.3s ease",
+                        zIndex: 10,
+                    }}
+                >
+                    <DictaphoneIcon onTranscriptComplete={handleTranscript} />
+                </Box>
+            </Box>
+
+            {/* 🟩 Place the popup OUTSIDE the blurred container */}
+            {showPopup && (
+                <VoiceQueryPopup
+                    transcript={transcript}
+                    show={showPopup}
+                    onClose={() => setShowPopup(false)}
+                />
+            )}
+        </Box>
+    );
 }
 
 export default Home;

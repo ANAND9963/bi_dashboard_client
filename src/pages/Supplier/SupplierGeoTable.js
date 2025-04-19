@@ -6,7 +6,7 @@ const SupplierGeoTable = () => {
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        axios.get(`${PORT}/api/suppliers/geo`,{
+        axios.get(`${PORT}api/suppliers/geo`,{
             headers: {
                 "Content-Type": "application/json",
                 "ngrok-skip-browser-warning": "true"
