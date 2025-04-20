@@ -10,7 +10,7 @@ export default function SupplierSidebar() {
     { path: "/supplier/DeliveryTable", label: "DeliveryTable" },
     { path: "/supplier/geo-map", label: "GeoMap" },
     { path: "/supplier/geo-table", label: "GeoTable" },
-    { path: "/supplier/kpi-cards", label: "KpiCards" },
+    // { path: "/supplier/kpi-cards", label: "KpiCards" },
   ];
 
   return (

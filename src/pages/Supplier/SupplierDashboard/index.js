@@ -32,12 +32,12 @@ const SupplierDashboard = () => {
             }
         }, [])
 
-        const formatted = response.data.map(d => ({
+        const formatted = response?.data?.map(d => ({
             name: `${d.transactionYear}-${String(d.transactionMonth).padStart(2, '0')}`,
             ...d
         }));
 
-        const totalKPIs = response.data.reduce((acc, cur) => ({
+        const totalKPIs = response?.data?.reduce((acc, cur) => ({
             totalTransactionAmount: acc.totalTransactionAmount + cur.totalTransactionAmount,
             totalAmountExcludingTax: acc.totalAmountExcludingTax + cur.totalAmountExcludingTax,
             totalTaxAmount: acc.totalTaxAmount + cur.totalTaxAmount,
@@ -52,24 +52,29 @@ const SupplierDashboard = () => {
     }, [year]);
 
     return (
-        <div className="dashboard-container">
-            <h2 style={{ color: 'black' }}>Supplier Transactions Dashboard</h2>
-
-            <div className="chart-controls">
-                <div>
-                    <label style={{ color: 'black' }}>Year: </label>
-                    <select value={year} onChange={e => setYear(e.target.value)}>
-                        {[2013, 2014, 2015, 2016, 2017].map(y => (
-                            <option key={y} value={y}>{y}</option>
-                        ))}
-                    </select>
-                </div>
-                <div>
-                    <button onClick={() => setView('chart')}>📊 Chart View</button>
-                    <button onClick={() => setView('table')}>📋 Table View</button>
+        <div className="w-screen h-screen  text-white flex flex-col items-center justify-center">
+        <div className="mb-6">
+           <h2 className="text-3xl text-gray-900 font-bold mb-2 text-center">Supplier Transactions Dashboard</h2>
+</div>
+<div className="chart-controls text-white">
+    <div>
+        <label className="mr-2 text-black">Year:</label>
+        <select
+            value={year}
+            onChange={e => setYear(e.target.value)}
+            className="bg-[#334155] text-white border border-gray-600 rounded px-3 py-1 focus:outline-none"
+        >
+            {[2013, 2014, 2015, 2016, 2017].map(y => (
+                <option key={y} value={y}>{y}</option>
+            ))}
+        </select>
+    </div>
+     <div>
+                    <button style={{ color: 'black' }} onClick={() => setView('chart')}>📊 Chart View</button>
+                    <button style={{ color: 'black' }} onClick={() => setView('table')}>📋 Table View</button>
                 </div>
             </div>
-
+            <div className="w-full h-[80%] px-4">
             <SupplierKpiCards kpis={kpis} />
 
             {view === 'chart' ? (
@@ -77,6 +82,7 @@ const SupplierDashboard = () => {
             ) : (
                 <SupplierTransactionTable data={data} />
             )}
+            </div>
         </div>
     );
 };
