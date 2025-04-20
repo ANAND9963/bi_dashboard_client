@@ -22,15 +22,18 @@ const PackageTypeItemCounts = () => {
     }, []);
 
     return (
-        <div className="p-4 mb-6 text-black">
-            <h3 className="text-2xl font-bold mb-4 ">Stock Items by Package Type</h3>
-             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {data.map((pkg, i) => (
+        <div className="bg-transparent text-white p-6 rounded-xl  mb-6">
+        <div className="mb-6">
+                    <h2 className="text-3xl text-gray-900 font-bold mb-2 text-center">
+                   Stock Items by Package Type </h2></div>
+
+                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                   {data.map((pkg, i) => (
                     <div
                         key={i}
-                        className="bg-[#1e1e1ecc] backdrop-blur-md text-white p-6 rounded-lg shadow-lg border border-gray-700"
-                    >
-                        <h4 className="text-lg font-semibold">{pkg.packageTypeName}</h4>
+                        className="backdrop-blur-md bg-[#334155] text-white p-5 rounded-xl shadow-md border border-gray-200"
+                              >
+                        <h4 className="text-lg font-bold text-white mb-2 font-semibold">{pkg.packageTypeName}</h4>
                         {/* <p className="text-white mt-1">Item Count</p>  */}
                         <p className="text-3xl font-bold text-blue-400 mt-1">{pkg.stockItemCount}</p>
                     </div>

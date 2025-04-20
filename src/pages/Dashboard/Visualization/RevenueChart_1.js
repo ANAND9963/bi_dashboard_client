@@ -19,7 +19,10 @@ const RevenueChart_1 = () => {
     const fetchData = async () => {
       try {
         const res = await axiosInstance.get(
-          `/api/stats/quarterly?startYear=${startYear}&endYear=${endYear}`
+          `/api/stats/quarterly?startYear=${startYear}&endYear=${endYear}`, {headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true"
+        }}
         );
         const formatted = res.data.map((item) => ({
           name: `${item.year} Q${item.quarter}`,
