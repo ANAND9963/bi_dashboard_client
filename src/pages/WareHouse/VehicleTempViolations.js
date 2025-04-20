@@ -21,7 +21,7 @@ const VehicleTempViolations = () => {
     return (
         <div className="bg-white/90 rounded-xl shadow-md p-4 mb-6">
             <h3 className="text-xl font-bold mb-4 text-gray-900">Vehicle Temp Violations</h3>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto text-gray-900">
                 <table className="w-full text-sm text-left text-gray-800">
                     <thead className="border-b border-gray-300">
                     <tr>

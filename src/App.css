@@ -57,6 +57,6 @@ select, button {
   border-radius: 4px;
   margin-left: 0.5rem;
 }
-table, th, td {
-  color: white !important;
-}
+/*table, th, td {*/
+/*  color: white !important;*/
+/*}*/

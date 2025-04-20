@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ebd4a617-fe08-4309-b3ea-afea5aa38d36" name="Changes" comment="mychanges">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Home/VoiceQueryPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home/VoiceQueryPopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Home/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Supplier/SupplierGeoTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Supplier/SupplierGeoTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Supplier/SupplierKpiCards.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Supplier/SupplierKpiCards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/WareHouse/VehicleTempViolations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/WareHouse/VehicleTempViolations.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +88,7 @@
       <workItem from="1744729238422" duration="7342000" />
       <workItem from="1744748276895" duration="3327000" />
       <workItem from="1744854814275" duration="3495000" />
-      <workItem from="1745010496463" duration="12483000" />
+      <workItem from="1745010496463" duration="16386000" />
     </task>
     <task id="LOCAL-00001" summary="mychanges">
       <option name="closed" value="true" />
