@@ -58,7 +58,7 @@ const SignIn = () => {
         notify(response?.data?.message,"success");
           setTimeout(() => {
             navigate("/Home");
-        { email === "admin" && password === "admin" ? navigate("/Home"): navigate("/Home")}
+         email === "admin" && password === "admin" ? navigate("/Home"): navigate("/Home")
           }, 2000);
         } 
          else {
@@ -93,7 +93,7 @@ const SignIn = () => {
         <input name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Input Password" required></input>
         <button type="submit" >Login</button>
         <Typography mt={2}>
-          Already have an account?{" "}
+          don't have an account?{" "}
           <Link to="/sign-up" style={{ color: "#ffcc00", textDecoration: "none", fontWeight: "bold" }}>
             Sign-Up
           </Link>
