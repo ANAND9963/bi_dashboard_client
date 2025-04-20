@@ -23,13 +23,12 @@ const StockGroupUsageChart = () => {
     }, []);
 
     return (
-        <div className="bg-transparent text-white p-6 rounded-xl  mb-6">
-        <div className="mb-6">
-                    <h2 className="text-3xl text-gray-900 font-bold mb-2 text-center">
-                   Stock Group Usage</h2>
+        <div className="w-screen h-screen  text-white flex flex-col items-center justify-center">
+         <div className="mb-6">
+            <h2 className="text-3xl text-gray-900 font-bold mb-2 text-center">Stock Group Usage</h2>
             </div>
             <div className="w-full h-[80%] px-4">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="80%">
                     <BarChart data={data}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                         <XAxis

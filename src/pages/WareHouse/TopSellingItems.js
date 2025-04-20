@@ -44,7 +44,7 @@ const TopSellingItems = () => {
             {/* Top Section */}
             <div className="mb-6">
                 <h2 className="text-3xl text-gray-900 font-bold mb-2 text-center">Warehouse Analytics</h2>
-                <p className="text-sm text-gray-600">Visualize top-selling items based on total revenue and quantity sold.</p>
+                <p className="text-lg text-gray-600 text-center">Visualize top-selling items based on total revenue and quantity sold.</p>
             </div>
 
             {/* Dropdown */}

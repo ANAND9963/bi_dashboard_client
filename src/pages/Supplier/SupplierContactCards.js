@@ -44,11 +44,12 @@ const SupplierContactCards = () => {
     };
 
     return (
-        <div className="p-4 ">
-            {/* Dropdown */}
+        <div className="bg-transparent text-white p-6 rounded-xl  mb-6">
+
+             {/* Dropdown */}
             <select
-                className="w-full p-2 mb-4 rounded bg-[#2c2c2c] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={selectedSupplier}
+                 className="mb-4 p-2 w-full sm:w-1/2 bg-[#334155] text-white rounded border border-gray-600 focus:outline-none"
+                 value={selectedSupplier}
                 onChange={(e) => {
                     setSelectedSupplier(e.target.value);
                     setCurrentPage(1);
@@ -63,18 +64,18 @@ const SupplierContactCards = () => {
             </select>
 
             {/* Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-                {paginated.map((c, i) => {
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                         {paginated.map((c, i) => {
                     const globalIndex = (currentPage - 1) * pageSize + i;
                     const isExpanded = expandedIndex === globalIndex;
 
                     return (
                         <div
                             key={globalIndex}
-                            className="card-dark bg-[#1e1e1e] p-4 rounded-lg shadow-md cursor-pointer transition duration-200 hover:bg-[#2a2a2a] text-white"
+                            className="backdrop-blur-md bg-[#334155] text-white p-5 rounded-xl shadow-md border border-gray-200"
                             onClick={() => toggleExpand(globalIndex)}
                         >
-                            <h4 className="font-bold text-lg text-white">{c.supplierName}</h4>
+                            <h4 className="text-lg font-semibold text-white mb-2">{c.supplierName}</h4>
                             {isExpanded && (
                                 <div className="mt-2 space-y-1 text-sm text-white">
                                     <p>

@@ -59,11 +59,15 @@ const SupplierGeoMap = () => {
         : locations;
 
     return (
-        <div className="bg-[#1e1e1ee0] text-white rounded-xl shadow-md p-4 mb-6 w-full max-w-full">
-            <h3 className="text-lg font-semibold mb-3">Supplier Map</h3>
+        <div className="bg-transparent text-white p-6 rounded-xl  mb-6">
+
+        {/* Top Section */}
+        <div className="mb-6">
+            <h2 className="text-3xl text-gray-900 font-bold mb-2 text-center">Supplier Map</h2>
+            </div>
 
             <select
-                className="p-2 mb-4 w-full rounded bg-[#2a2a2a] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mb-4 p-2 w-full sm:w-1/2 bg-[#334155] text-white rounded border border-gray-600 focus:outline-none"
                 value={selectedSupplier}
                 onChange={(e) => setSelectedSupplier(e.target.value)}
             >
@@ -72,25 +76,27 @@ const SupplierGeoMap = () => {
                     <option key={i} value={name}>{name}</option>
                 ))}
             </select>
+            <div className="overflow-x-auto">
+            <div className="rounded overflow-hidden border border-gray-600" style={{ width: '100%', height: '80vh' }}>
+    <MapContainer
+        center={[37.0902, -95.7129]}
+        zoom={2}
+        scrollWheelZoom={false}
+        style={{ width: '100%', height: '100%' }}
+    >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <AutoFitMap markers={filtered} />
+        {filtered.map((loc, i) => (
+            <Marker key={i} position={[loc.latitude, loc.longitude]}>
+                <Popup>
+                    <strong>{loc.supplierName}</strong><br />
+                    {loc.cityName}
+                </Popup>
+            </Marker>
+        ))}
+    </MapContainer>
+</div>
 
-            <div className="rounded overflow-hidden border border-gray-600" style={{ width: '100%', height: '400px' }}>
-                <MapContainer
-                    center={[37.0902, -95.7129]}
-                    zoom={2}
-                    scrollWheelZoom={false}
-                    style={{ width: '100%', height: '100%' }}
-                >
-                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                    <AutoFitMap markers={filtered} />
-                    {filtered.map((loc, i) => (
-                        <Marker key={i} position={[loc.latitude, loc.longitude]}>
-                            <Popup>
-                                <strong>{loc.supplierName}</strong><br />
-                                {loc.cityName}
-                            </Popup>
-                        </Marker>
-                    ))}
-                </MapContainer>
             </div>
         </div>
     );

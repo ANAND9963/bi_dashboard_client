@@ -25,32 +25,38 @@ const SupplierGeoTable = () => {
     );
 
     return (
-        <div className="p-4 rounded-xl bg-[#1e1e1e] text-white shadow-md">
-            <h3 className="text-lg font-semibold mb-3">Supplier Geography</h3>
+        <div className="bg-transparent text-white p-6 rounded-xl  mb-6">
+
+            {/* Top Section */}
+            <div className="mb-6">
+            <h2 className="text-3xl text-gray-900 font-bold mb-2 text-center">Supplier Geography</h2>
+            </div>
             <input
                 type="text"
                 placeholder="Search supplier..."
-                className="p-2 mb-3 w-full rounded bg-gray-800 text-white"
+                className="mb-4 p-2 w-full sm:w-1/2 bg-[#334155] text-white rounded border border-gray-600 focus:outline-none"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
             />
-            <div className="overflow-x-auto">
-                <table className="w-full text-left table-auto border-collapse">
-                    <thead>
-                    <tr className="border-b border-gray-600">
-                        <th className="p-2">Supplier</th>
-                        <th className="p-2">Continent</th>
-                        <th className="p-2">Country</th>
-                        <th className="p-2">City</th>
+           <div className="overflow-x-auto">
+                <table className="w-full text-left border border-gray-700 table-auto rounded-lg overflow-hidden">
+                    <thead className="bg-[#0f172a] text-white">
+                        <tr>
+                             <th className="p-4 border border-gray-700">Supplier</th>
+                        <th className="p-4 border border-gray-700">Continent</th>
+                        <th className="p-4 border border-gray-700">Country</th>
+                        <th className="p-4 border border-gray-700">City</th>
                     </tr>
                     </thead>
                     <tbody>
                     {filtered.map((r, i) => (
-                        <tr key={i} className="border-b border-gray-700">
-                            <td className="p-2">{r.supplierName}</td>
-                            <td className="p-2">{r.continent}</td>
-                            <td className="p-2">{r.countryName}</td>
-                            <td className="p-2">{r.cityName}</td>
+                        <tr  key={i}
+                        className={`${i % 2 === 0 ? 'bg-[#1e293b]' : 'bg-[#2e3b51]'} hover:bg-[#3b4a64] transition-colors`}
+                >
+                            <td className="p-4 border border-gray-700">{r.supplierName}</td>
+                            <td className="p-4 border border-gray-700">{r.continent}</td>
+                            <td className="p-4 border border-gray-700">{r.countryName}</td>
+                            <td className="p-4 border border-gray-700">{r.cityName}</td>
                         </tr>
                     ))}
                     </tbody>
